@@ -36,7 +36,8 @@ WORKDIR /var/www/html
 
 RUN mkdir ./src
 
-RUN composer install --prefer-dist
+RUN composer config audit.block-insecure false \
+ && composer install --prefer-dist --no-interaction --ignore-platform-reqs
 RUN composer dump-autoload --optimize
 
 
